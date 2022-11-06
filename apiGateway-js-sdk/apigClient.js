@@ -121,7 +121,7 @@ apigClientFactory.newClient = function (config) {
     
     apigClient.searchGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
-        
+        console.log('HERE')
         apiGateway.core.utils.assertParametersDefined(params, ['q'], ['body']);
         
         var searchGetRequest = {

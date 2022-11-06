@@ -45,7 +45,7 @@ function searchPhotos(query) {
     document.getElementById('displayPhotos').innerHTML = "<h4 style=\"text-align:center\">";
 
     var queryString = {'q' : query };
-    
+    console.log(queryString)
     apigClient.searchGet(queryString, {}, {})
         .then(function(result) {
             image_paths = result["data"]["body"]["imagePaths"];
