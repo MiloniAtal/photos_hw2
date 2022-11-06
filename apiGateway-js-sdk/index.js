@@ -67,7 +67,6 @@ function searchPhotos(query) {
 }
 
 function raiseAlert(filePath){
-
 	console.log(filePath)
 	if (filePath == ""){
 		alert("No file chosen");
@@ -77,13 +76,15 @@ function raiseAlert(filePath){
 		{
 			var typeFile = filePath.split('.')[1]
 			console.log(typeFile)
-			if (typeFile != 'png' || typeFile != 'jpg' ||typeFile != 'jpeg'){
-				alert('Invalid file type.')
+			var admissible = ['jpg','png','jpeg']
+			if ( !admissible.includes(typeFile) ){
+				alert('Invalid file type')
 				return true
 			}
 		}
 	return false
 }
+
 function addPhoto() {
     var filePath = (document.getElementById('photofilepath').value).split("\\");
     console.log(filePath)
