@@ -1,4 +1,4 @@
-var apigClient = apigClientFactory.newClient();
+//var apigClient = apigClientFactory.newClient();
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
