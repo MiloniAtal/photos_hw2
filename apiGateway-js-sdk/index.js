@@ -67,6 +67,7 @@ function searchPhotos(query) {
 
 function raiseAlert(filePath){
 
+	console.log(filePath)
 	if (filePath == ""){
 		alert("No file chosen");
 		return true
@@ -74,6 +75,7 @@ function raiseAlert(filePath){
 	else 
 		{
 			var typeFile = filePath.split('.')[1]
+			console.log(typeFile)
 			if (typeFile != 'png' || typeFile != 'jpg' ||typeFile != 'jpeg'){
 				alert('Invalid file type.')
 				return true
@@ -83,8 +85,9 @@ function raiseAlert(filePath){
 }
 function addPhoto() {
     var filePath = (document.getElementById('photofilepath').value).split("\\");
+    console.log(filePath)
     var fileName = filePath[filePath.length - 1];
-    
+    console.log(fileName)
     var customTags = document.getElementById('custom_labels').innerText
 
     var reader = new FileReader();
