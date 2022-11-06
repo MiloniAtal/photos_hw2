@@ -97,7 +97,7 @@ function addPhoto() {
 	// Will reset the search bar
 	document.getElementById('photofilepath').value = "";
 
-	if (!raiseAlert(filePath)){
+	if (!raiseAlert(fileName)){
 		var params = {};
         var additionalParams = {
             headers: {
