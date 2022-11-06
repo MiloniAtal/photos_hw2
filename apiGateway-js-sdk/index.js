@@ -1,17 +1,14 @@
-//var apigClient = apigClientFactory.newClient();
+var apigClient = apigClientFactory.newClient({});
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
-
-const query = document.getElementById("query");
-
+const status = document.getElementById("status")
 startRecognition = () => {
   if (SpeechRecognition !== undefined) {
     let recognition = new SpeechRecognition();
 
     recognition.onstart = () => {
       status.innerHTML = 'Listening';
-      output.classList.add("hide");
     };
 
     recognition.onspeechend = () => {
@@ -21,6 +18,7 @@ startRecognition = () => {
 
     recognition.onresult = (result) => {
       console.log(result.results[0][0].transcript)
+      var query = document.getElementById("query");
       query.value = result.results[0][0].transcript
     };
     recognition.start();
