@@ -29,14 +29,15 @@
             <center>
                 <form action="", method="get", target="", id="search_photos">
                     <input name="query" id = "query" type="text" placeholder="Show me ..." autofocus>
-                    <button type="button">
-                        <i class="large material-icons" id="mic_search" onclick="searchByVoice()">mic</i>
-                    </button>
+                    <div class="row">
+                    <button type="button" id="searchPhotos" name="searchPhotos" onclick="searchByText()">Search</button>
+                    </div>
                 </form>
                 <p class="search_info">Record</p>
-                <div class="row">
-                    <button type="button" id="searchPhotos" name="searchPhotos" onclick="searchByText()">Search</button>
-                </div>
+                    <button type="button">
+                        <h4 id="status">Press mic to start speaking</h4>
+                        <button onclick="startRecognition()">Mic</button>
+                    </button>                
             </center>
         </div>
       
