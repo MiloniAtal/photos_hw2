@@ -74,15 +74,8 @@ function searchPhotos(query) {
     console.log(queryString)
     apigClient.searchGet(queryString, {}, {})
         .then(function(result) {
-			console.log('1')
-			console.log(result)
-			console.log('2')
-            console.log(result['data'])
-			console.log('3')
-            console.log(result['data']['body'])
-			
-			// image_paths = result["data"]["imagePaths"];
-			image_paths = JSON.parse(result['data']['body'])
+			image_paths = result['data']['imagePaths'];
+			//image_paths = JSON.parse(result['data']['body'])
 			console.log(image_paths)
             var photos = document.getElementById("displayPhotos");
             photos.innerHTML = "";
