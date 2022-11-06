@@ -74,7 +74,16 @@ function searchPhotos(query) {
     console.log(queryString)
     apigClient.searchGet(queryString, {}, {})
         .then(function(result) {
-            image_paths = result["data"]["body"]["imagePaths"];
+			console.log('1')
+			console.log(result)
+			console.log('2')
+            console.log(result['data'])
+			console.log('3')
+            console.log(result['data']['body'])
+			
+			// image_paths = result["data"]["imagePaths"];
+			image_paths = JSON.parse(result['data']['body'])
+			console.log(image_paths)
             var photos = document.getElementById("displayPhotos");
             photos.innerHTML = "";
 
@@ -135,7 +144,7 @@ function addPhoto() {
         reader.onload = function (event) {
             body = btoa(event.target.result);
             console.log('Reader body : ', body);
-            return apigClient.folderItemPut(params, additionalParams)
+            return apigClient.addBucketKeyPut(params, additionalParams)
             .then(function(result) {
                 console.log(result);
             })
