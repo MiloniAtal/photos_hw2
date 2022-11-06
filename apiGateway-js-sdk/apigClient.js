@@ -53,7 +53,7 @@ apigClientFactory.newClient = function (config) {
 
     
     // extract endpoint and path from url
-    var invokeUrl = 'https://l1hfcenzme.execute-api.us-east-1.amazonaws.com/beta';
+    var invokeUrl = 'https://iav31pdv15.execute-api.us-east-1.amazonaws.com/beta';
     var endpoint = /(^https?:\/\/[^\/]+)/g.exec(invokeUrl)[1];
     var pathComponent = invokeUrl.substring(endpoint.length);
 
@@ -83,45 +83,45 @@ apigClientFactory.newClient = function (config) {
     
     
     
-    apigClient.addPut = function (params, body, additionalParams) {
+    apigClient.addBucketKeyPut = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['key', 'bucket', 'x-amz-meta-customLabels'], ['body']);
         
-        var addPutRequest = {
+        var addBucketKeyPutRequest = {
             verb: 'put'.toUpperCase(),
-            path: pathComponent + uritemplate('/add').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            path: pathComponent + uritemplate('/add/{bucket}/{key}').expand(apiGateway.core.utils.parseParametersToObject(params, ['key', 'bucket', ])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['x-amz-meta-customLabels']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
         
         
-        return apiGatewayClient.makeRequest(addPutRequest, authType, additionalParams, config.apiKey);
+        return apiGatewayClient.makeRequest(addBucketKeyPutRequest, authType, additionalParams, config.apiKey);
     };
     
     
-    apigClient.addOptions = function (params, body, additionalParams) {
+    apigClient.addBucketKeyOptions = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
         
-        var addOptionsRequest = {
+        var addBucketKeyOptionsRequest = {
             verb: 'options'.toUpperCase(),
-            path: pathComponent + uritemplate('/add').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            path: pathComponent + uritemplate('/add/{bucket}/{key}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
         
         
-        return apiGatewayClient.makeRequest(addOptionsRequest, authType, additionalParams, config.apiKey);
+        return apiGatewayClient.makeRequest(addBucketKeyOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
     apigClient.searchGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
-        console.log('HERE')
+        
         apiGateway.core.utils.assertParametersDefined(params, ['q'], ['body']);
         
         var searchGetRequest = {
