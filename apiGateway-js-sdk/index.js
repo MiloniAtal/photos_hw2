@@ -1,10 +1,10 @@
 var apigClient = apigClientFactory.newClient();
 // window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-window.SpeechRecognition = window.webkitSpeechRecognition;
+//window.SpeechRecognition = window.webkitSpeechRecognition;
 
 function searchByVoice(){
     var query = document.getElementById("query");
-    const recognition = new window.SpeechRecognition();
+    const recognition = new window.webkitSpeechRecognition();
     micButton = document.getElementById("mic_search");  
     
     if (micButton.innerHTML == "mic") {
