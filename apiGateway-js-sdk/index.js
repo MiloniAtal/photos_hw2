@@ -1,5 +1,6 @@
 var apigClient = apigClientFactory.newClient();
-window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+// window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+window.SpeechRecognition = window.webkitSpeechRecognition;
 
 function searchByVoice(){
     var query = document.getElementById("query");
