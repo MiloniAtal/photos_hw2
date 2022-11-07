@@ -138,7 +138,8 @@ function addPhoto() {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': file.type,
                 'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods' : 'PUT'
+                'Access-Control-Allow-Methods' : 'PUT',
+                'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'
                 
             }
         };
