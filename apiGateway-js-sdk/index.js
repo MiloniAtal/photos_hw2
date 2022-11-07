@@ -74,9 +74,9 @@ function searchPhotos(query) {
     console.log(queryString)
     apigClient.searchGet(queryString, {}, {})
         .then(function(result) {
-			image_paths = result['data']['imagePaths'];
-			//image_paths = JSON.parse(result['data']['body'])
-			console.log(image_paths)
+            image_paths = result['data']['imagePaths'];
+            //image_paths = JSON.parse(result['data']['body'])
+            console.log(image_paths)
             var photos = document.getElementById("displayPhotos");
             photos.innerHTML = "";
 
@@ -94,22 +94,22 @@ function searchPhotos(query) {
 }
 
 function raiseAlert(filePath){
-	//console.log(filePath)
-	if (filePath == ""){
-		alert("No file chosen");
-		return true
-	}
-	else 
-		{
-			var typeFile = filePath.split('.')[1]
-			//console.log(typeFile)
-			var admissible = ['jpg','png','jpeg']
-			if ( !admissible.includes(typeFile) ){
-				alert('Invalid file type')
-				return true
-			}
-		}
-	return false
+    //console.log(filePath)
+    if (filePath == ""){
+        alert("No file chosen");
+        return true
+    }
+    else 
+        {
+            var typeFile = filePath.split('.')[1]
+            //console.log(typeFile)
+            var admissible = ['jpg','png','jpeg']
+            if ( !admissible.includes(typeFile) ){
+                alert('Invalid file type')
+                return true
+            }
+        }
+    return false
 }
 
 function addPhoto() {
@@ -118,23 +118,28 @@ function addPhoto() {
     var fileName = filePath[filePath.length - 1];
     //console.log(fileName)
     var customTags = document.getElementById('custom_labels').value
-	console.log(customTags)
+    console.log(customTags)
     var reader = new FileReader();
     var file = document.getElementById('photofilepath').files[0];
-	
-	// Will reset the search bar
-	document.getElementById('photofilepath').value = "";
-	document.getElementById('custom_labels').value = "";
+    
+    // Will reset the search bar
+    document.getElementById('photofilepath').value = "";
+    document.getElementById('custom_labels').value = "";
 
 
-	if (!raiseAlert(fileName)){
-		var params = {};
+    if (!raiseAlert(fileName)){
+        var params = {
+            'key': fileName,
+            'bucket': 'b2-hw2-my2727-ma4338',
+            'x-amz-meta-customLabels': customTags
+        };
         var additionalParams = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': file.type,
-				'x-amz-meta-customLabels': customTags,
-				
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Methods' : 'PUT'
+                
             }
         };
         
@@ -150,6 +155,6 @@ function addPhoto() {
             })
         }
         reader.readAsBinaryString(file);
-	}
+    }
         
 }
