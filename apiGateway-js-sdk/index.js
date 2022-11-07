@@ -117,14 +117,14 @@ function addPhoto() {
     //console.log(filePath)
     var fileName = filePath[filePath.length - 1];
     //console.log(fileName)
-    var customTags = document.getElementById('custom_labels').innerText
+    var customTags = document.getElementById('custom_labels').value
 	console.log(customTags)
     var reader = new FileReader();
     var file = document.getElementById('photofilepath').files[0];
 	
 	// Will reset the search bar
 	document.getElementById('photofilepath').value = "";
-	document.getElementById('custom_labels').innerText = "";
+	document.getElementById('custom_labels').value = "";
 
 
 	if (!raiseAlert(fileName)){
@@ -132,13 +132,15 @@ function addPhoto() {
         var additionalParams = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Content-Type': file.type
+                'Content-Type': file.type,
+				'x-amz-meta-customLabels': customTags,
+				
             }
         };
         
         reader.onload = function (event) {
             body = btoa(event.target.result);
-            console.log('Reader body : ', body);
+            //console.log('Reader body : ', body);
             return apigClient.addBucketKeyPut(params, additionalParams)
             .then(function(result) {
                 console.log(result);
