@@ -131,16 +131,14 @@ function addPhoto() {
         var params = {
             'key': fileName,
             'bucket': 'b2-hw2-my2727-ma4338',
+            'Content-Type': file.type,
             'x-amz-meta-customLabels': customTags
         };
         var additionalParams = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Content-Type': file.type,
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Methods' : 'PUT',
-                'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'
-                
+                'Access-Control-Allow-Methods' : 'GET, OPTIONS, POST, PUT',
+                'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'                
             }
         };
         
