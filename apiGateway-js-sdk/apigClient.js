@@ -86,7 +86,7 @@ apigClientFactory.newClient = function (config) {
     apigClient.addBucketKeyPut = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['key', 'bucket', 'Content-Type', 'Accept', 'x-amz-meta-customLabels'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['Content-Type', 'Accept', 'key', 'bucket', 'x-amz-meta-customLabels'], ['body']);
         
         var addBucketKeyPutRequest = {
             verb: 'put'.toUpperCase(),
