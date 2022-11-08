@@ -194,6 +194,29 @@ function getBase64(file) {
 function addPhoto()
 {
     var file = document.getElementById("photofilepath").files[0];
+    file.constructor = () => file
+    const fileReader = new FileReader();
+    var encodedImage = getBase64(file).then(
+        data => {
+            var apigClient = apigClientFactory.newClient({
+              apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx"
+            });
+    var fileType = file.type// + ";base64"
+    var body = data;
+    var params = {"key": file.name, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": document.getElementById('custom_labels').value, "x-amz-acl": "public-read", "Accept":"*"};
+    var addParams = {};
+    apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
+        if(res.status == 200)
+        {
+         document.getElementById("display-text").innerHTML="Uploaded!";
+        }
+    })
+});
+}
+
+function addPhoto_betterpostman()
+{
+    var file = document.getElementById("photofilepath").files[0];
     const fileReader = new FileReader();
     var encodedImage = getBase64(file).then(
         data => {
