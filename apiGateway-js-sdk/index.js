@@ -203,7 +203,8 @@ function addPhoto()
             });
     var fileType = file.type// + ";base64"
     var body = data;
-    var params = {"key": file.name, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": document.getElementById('custom_labels').value, "x-amz-acl": "public-read", "Accept":"*"};
+    var user_custom_labels = (document.getElementById('custom_labels').value).replace(/\s/g, '')    
+    var params = {"key": file.name, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*"};
     var addParams = {};
     apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
         if(res.status == 200)
