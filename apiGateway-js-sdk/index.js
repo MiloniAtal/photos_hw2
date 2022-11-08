@@ -113,7 +113,7 @@ function raiseAlert(filePath){
 }
 
 
-function getBase64(file) {
+function getBase64_old(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -129,7 +129,7 @@ function getBase64(file) {
   });
 }
 
-function addPhoto() {
+function addPhoto12() {
   // var file_data = $("#file_path").prop("files")[0];
   var file = document.getElementById('photofilepath').files[0];
   const reader = new FileReader();
@@ -176,7 +176,7 @@ function addPhoto() {
 }
 
 
-function getBase64_old(file) {
+function getBase64(file) {
     return new Promise((resolve, reject) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
@@ -191,7 +191,7 @@ function getBase64_old(file) {
     })
 }
 
-function addPhoto12()
+function addPhoto()
 {
     var file = document.getElementById("photofilepath").files[0];
     const fileReader = new FileReader();
