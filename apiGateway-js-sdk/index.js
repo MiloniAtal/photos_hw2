@@ -155,6 +155,8 @@ function addPhoto() {
       var additionalParams = {
         headers: {
           'Content-Type': "image/jpeg",
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods' : 'GET, OPTIONS, POST, PUT',                
         },
       };
 
