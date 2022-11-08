@@ -112,7 +112,69 @@ function raiseAlert(filePath){
     return false
 }
 
+
 function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    // reader.onload = () => resolve(reader.result)
+    reader.onload = () => {
+      let encoded = reader.result.replace(/^data:(.*;base64,)?/, '');
+      if ((encoded.length % 4) > 0) {
+        encoded += '='.repeat(4 - (encoded.length % 4));
+      }
+      resolve(encoded);
+    };
+    reader.onerror = error => reject(error);
+  });
+}
+
+function addPhoto() {
+  // var file_data = $("#file_path").prop("files")[0];
+  var file = document.getElementById('photofilepath').files[0];
+  const reader = new FileReader();
+
+  var file_data;
+  // var file = document.querySelector('#file_path > input[type="file"]').files[0];
+  var encoded_image = getBase64(file).then(
+    data => {
+      console.log(data)
+      var apigClient = apigClientFactory.newClient({
+        apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx",
+        defaultContentType: "image/jpeg",
+        defaultAcceptType: "image/jpeg"
+      });
+      var body = file;
+      var params = {
+        "key": file.name,
+        "bucket": "b2-hw2-my2727-ma4338",
+        'x-api-key': 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx',
+        "x-amz-meta-customLabels": document.getElementById('custom_labels').value
+      };
+
+      var additionalParams = {
+        headers: {
+          'Content-Type': "image/jpeg",
+        },
+      };
+
+    });
+
+  
+  let config = {
+       headers: { 'Content-Type': file.type }
+   };
+   url = 'https://cors-anywhere.herokuapp.com/https://iav31pdv15.execute-api.us-east-1.amazonaws.com/beta/b2-hw2-my2727-ma4338/' + file.name
+   axios.put(url, file, config).then(response => {
+     console.log(" New "+response.data)
+     alert("Image uploaded successfully!");
+     console.log("Success");
+   });
+
+}
+
+
+function getBase64_old(file) {
     return new Promise((resolve, reject) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
@@ -127,7 +189,7 @@ function getBase64(file) {
     })
 }
 
-function addPhoto()
+function addPhoto12()
 {
     var file = document.getElementById("photofilepath").files[0];
     const fileReader = new FileReader();
