@@ -112,7 +112,45 @@ function raiseAlert(filePath){
     return false
 }
 
-function addPhoto() {
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            let encodedImage = fileReader.result.toString().replace(/^data:(.*;base64,)?/, '');
+            if ((encodedImage.length%4)>0) {
+              encodedImage += '='.repeat(4 - (encodedImage.length % 4));
+            }
+            resolve(encodedImage);
+        };
+        fileReader.onerror = error => reject(error);
+    })
+}
+
+function addPhoto()
+{
+    var file = document.getElementById("photofilepath").files[0];
+    const fileReader = new FileReader();
+    var encodedImage = getBase64(file).then(
+        data => {
+            var apigClient = apigClientFactory.newClient({
+              apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx"
+            });
+    var fileType = file.type + ";base64"
+    var body = data;
+    var params = {"item": file.name, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": document.getElementById('custom_labels').value, "x-amz-acl": "public-read"};
+    var addParams = {};
+    apigClient.uploadBucketItemPut(params, body, addParams).then(function(res) {
+        if(res.status == 200)
+        {
+         document.getElementById("display-text").innerHTML="Uploaded!";
+        }
+    })
+});
+}
+
+
+function addPhoto11() {
     var filePath = (document.getElementById('photofilepath').value).split("\\");
     //console.log(filePath)
     var fileName = filePath[filePath.length - 1];
