@@ -123,8 +123,8 @@ function addPhoto()
         const fileReader = new FileReader();
         var encodedImage = getBase64(file).then(
             data => {
-                var my_api_key = "jNcTqxYl0X8p0MaOUpzfo3pAOOA339eL6R4fCc37"
-                //var my_api_key = "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"
+                //var my_api_key = "jNcTqxYl0X8p0MaOUpzfo3pAOOA339eL6R4fCc37" //Original
+                var my_api_key = "XbofK4qRQr66IR94lzOAm5QMCFN4cgTC63ypXvV4" //Cloud
                 
                 var apigClient = apigClientFactory.newClient({
                   apiKey: my_api_key
@@ -133,8 +133,8 @@ function addPhoto()
                 var body = data;
                 var user_custom_labels = (document.getElementById('custom_labels').value).replace(/\s/g, '').toLowerCase();
                 var filename_updated = file.name.replace(/\s/g, '')
-                //var bucketName = "b2-hw2-cloud" 
-                var bucketName = "b2-hw2-my2727-ma4338" //for original
+                var bucketName = "b2-hw2-cloud" //Cloud
+                //var bucketName = "b2-hw2-my2727-ma4338" //Original
                 var params = {"key": filename_updated, "bucket": bucketName, "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*", "x-api-key": my_api_key};
                 var addParams = {headers: {
                             'Access-Control-Allow-Origin': '*',
