@@ -16,6 +16,10 @@ body {
   min-height: 100vh;
   text-align: center;
   font-family: Roboto,"Helvetica Neue",Arial,sans-serif;
+  background-image: url('pinterest20.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 .hide {
   display: none;
