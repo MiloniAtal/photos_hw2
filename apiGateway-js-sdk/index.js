@@ -8,11 +8,11 @@ startRecognition = () => {
     let recognition = new SpeechRecognition();
 
     recognition.onstart = () => {
-      status.value = 'Listening';
+      document.getElementById("status").value = 'Listening';
     };
 
     recognition.onspeechend = () => {
-      status.value = 'Stopped';
+      document.getElementById("status").value = 'Stopped';
       recognition.stop();
     };
 
@@ -23,7 +23,7 @@ startRecognition = () => {
     };
     recognition.start();
   } else {
-    status.value = "Voice is not supported";
+    document.getElementById("status").value = "Voice is not supported";
   }
 };
 
