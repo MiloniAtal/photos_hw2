@@ -238,6 +238,11 @@ function addPhoto()
                 })
             });
     }
+    else
+    {
+        document.getElementById('custom_labels').value = "";
+        document.getElementById('photofilepath').value = "";
+    }
 }
 
 function addPhoto_betterpostman()
