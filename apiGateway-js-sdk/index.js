@@ -115,7 +115,7 @@ function addPhoto()
             data => {
                 var apigClient = apigClientFactory.newClient({
                   //apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx" for original
-                  apiKey: "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS". //For cloud API
+                  apiKey: "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"//For cloud API
                 });
                 var fileType = file.type// + ";base64"
                 var body = data;
