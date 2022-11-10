@@ -24,6 +24,7 @@
         </header>
     </center>
     <body>
+    
     <script>
 
       var apigClient = apigClientFactory.newClient({});
@@ -34,16 +35,11 @@
                 <form action="", method="get", target="", id="search_photos">
                     <input name="query" id = "query" type="text" placeholder="Show me ..." autofocus>
                     <div class="row">
-                    <!-- <button type="button" id="searchPhotos" name="searchPhotos" onclick="searchByText()">Search</button> -->
-
-                    <button class="button-55" role="button" id="searchPhotos" name="searchPhotos" onclick="searchByText()" >Search</button>
-
+                    <button type="button" id="searchPhotos" name="searchPhotos" onclick="searchByText()">Search</button>
                     </div>
                 </form>
                     <h4 id="status">Press mic to start speaking</h4>
-                    <button class="button-55" role="button" onclick="startRecognition()" >Mic</button>
-
-                    <!-- <button type="button" onclick="startRecognition()">Mic</button>                    -->
+                    <button type="button" onclick="startRecognition()">Mic</button>                   
             </center>
         </div>
       
@@ -60,9 +56,7 @@
                     <input type="file" id="photofilepath" name="filename">                  
                     <input type="text" id="custom_labels" name="custom_labels" placeholder="Add custom labels">               
                 </form>
-                <!-- <button id="add_photo_button" onclick="addPhoto()">Upload</button> -->
-                <button class="button-55" role="button" id="add_photo_button" onclick="addPhoto()" >Upload</button>
-
+                <button id="add_photo_button" onclick="addPhoto()">Upload</button>
             </center>
         </div>
       
