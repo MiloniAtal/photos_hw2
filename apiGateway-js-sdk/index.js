@@ -28,6 +28,16 @@ startRecognition = () => {
 };
 
 
+function searchByText() {
+    var query = document.getElementById('query');
+    if (query.value) {
+        query = query.value.toLowerCase().trim();
+        searchPhotos(query);
+    } else {    
+        alert('No valid input');
+    }   
+}
+
 function searchPhotos(query) {
 
     document.getElementById('query').value = query;
