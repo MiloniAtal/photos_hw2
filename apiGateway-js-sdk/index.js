@@ -8,11 +8,11 @@ startRecognition = () => {
     let recognition = new SpeechRecognition();
 
     recognition.onstart = () => {
-      status.innerHTML = 'Listening';
+      status.value = 'Listening';
     };
 
     recognition.onspeechend = () => {
-      status.innerHTML = 'Stopped';
+      status.value = 'Stopped';
       recognition.stop();
     };
 
@@ -23,7 +23,7 @@ startRecognition = () => {
     };
     recognition.start();
   } else {
-    status.innerHTML = "Voice is not supported";
+    status.value = "Voice is not supported";
   }
 };
 
@@ -211,7 +211,8 @@ function addPhoto()
     var params = {"key": filename_updated, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*"};
     var addParams = {headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods' : 'GET, OPTIONS, POST, PUT',
+                'Access-Control-Allow-Methods' : 'OPTIONS,PUT',
+                'Access-Control-Allow-Headers' : '*',
                 "Content-Type": file.type,
                 'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'                
             }};
