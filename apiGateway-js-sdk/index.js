@@ -124,7 +124,7 @@ function addPhoto()
         var encodedImage = getBase64(file).then(
             data => {
                 var apigClient = apigClientFactory.newClient({
-                  apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx" for original
+                  apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx"// for original
                   //apiKey: "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"//For cloud API
                 });
                 var fileType = file.type// + ";base64"
@@ -139,7 +139,7 @@ function addPhoto()
                             'Access-Control-Allow-Methods' : 'OPTIONS,PUT',
                             'Access-Control-Allow-Headers' : '*',
                             "Content-Type": file.type,
-                            'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'    original API
+                            'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx' //   original API
                             //'X-Api-Key' : 'WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS'           
                         }};
                 apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
