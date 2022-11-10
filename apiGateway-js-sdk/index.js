@@ -201,35 +201,43 @@ function getBase64(file) {
 function addPhoto()
 {
     var file = document.getElementById("photofilepath").files[0];
-    file.constructor = () => file
-    const fileReader = new FileReader();
-    var encodedImage = getBase64(file).then(
-        data => {
-            var apigClient = apigClientFactory.newClient({
-              apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx"
+
+    var filePath = (document.getElementById('photofilepath').value).split("\\");
+    var fileName = filePath[filePath.length - 1]
+
+    if (!raiseAlert(fileName))
+    {
+
+        file.constructor = () => file
+        const fileReader = new FileReader();
+        var encodedImage = getBase64(file).then(
+            data => {
+                var apigClient = apigClientFactory.newClient({
+                  apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx"
+                });
+                var fileType = file.type// + ";base64"
+                var body = data;
+                var user_custom_labels = (document.getElementById('custom_labels').value).replace(/\s/g, '').toLowerCase();
+                var filename_updated = file.name.replace(/\s/g, '')
+                var params = {"key": filename_updated, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*"};
+                var addParams = {headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods' : 'OPTIONS,PUT',
+                            'Access-Control-Allow-Headers' : '*',
+                            "Content-Type": file.type,
+                            'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'                
+                        }};
+                apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
+                    document.getElementById('custom_labels').value = "";
+                    document.getElementById('photofilepath').value = "";
+                    if(res.status == 200)
+                    {
+                        alert("Image uploaded successfully!");
+                        console.log('Uploaded successfully');
+                    }
+                })
             });
-    var fileType = file.type// + ";base64"
-    var body = data;
-    var user_custom_labels = (document.getElementById('custom_labels').value).replace(/\s/g, '').toLowerCase();
-    var filename_updated = file.name.replace(/\s/g, '')
-    var params = {"key": filename_updated, "bucket": "b2-hw2-my2727-ma4338", "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*"};
-    var addParams = {headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods' : 'OPTIONS,PUT',
-                'Access-Control-Allow-Headers' : '*',
-                "Content-Type": file.type,
-                'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'                
-            }};
-    apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
-        document.getElementById('custom_labels').value = "";
-        document.getElementById('photofilepath').value = "";
-        if(res.status == 200)
-        {
-            alert("Image uploaded successfully!");
-            console.log('Uploaded successfully');
-        }
-    })
-});
+    }
 }
 
 function addPhoto_betterpostman()
