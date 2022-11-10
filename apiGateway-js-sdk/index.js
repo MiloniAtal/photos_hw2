@@ -133,7 +133,7 @@ function addPhoto()
                 var body = data;
                 var user_custom_labels = (document.getElementById('custom_labels').value).replace(/\s/g, '').toLowerCase();
                 var filename_updated = file.name.replace(/\s/g, '')
-                var bucketName = "b2-hw2-cloud" //Cloud
+                var bucketName = "hw2-b2-cloud" //Cloud
                 //var bucketName = "b2-hw2-my2727-ma4338" //Original
                 var params = {"key": filename_updated, "bucket": bucketName, "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*", "x-api-key": my_api_key};
                 var addParams = {headers: {
