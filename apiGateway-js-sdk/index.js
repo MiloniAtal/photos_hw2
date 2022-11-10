@@ -81,15 +81,19 @@ function searchPhotos(query) {
             photos.innerHTML = "";
 
             var n=0;
+            
+            //if (!image_paths.length) 
+            if (!image_paths){
+               alert('No images found!')
+            }
+          else{
             while (n < image_paths.length) {
                 images_list = image_paths[n].split('/');
                 imageName = images_list[images_list.length - 1];
                 photos.innerHTML += '<figure><img src="' + image_paths[n] + '" style="width:25%"><figcaption>' + imageName + '</figcaption></figure>';
                 n++;
             }
-            if (!image_paths.length) {
-                alert('No images found!')
-            }
+          }
 
         }).catch(function(result) {
             console.log(result);
