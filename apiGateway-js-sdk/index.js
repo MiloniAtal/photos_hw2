@@ -123,9 +123,11 @@ function addPhoto()
         const fileReader = new FileReader();
         var encodedImage = getBase64(file).then(
             data => {
+                var my_api_key = "jNcTqxYl0X8p0MaOUpzfo3pAOOA339eL6R4fCc37"
+                //var my_api_key = "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"
+                
                 var apigClient = apigClientFactory.newClient({
-                  apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx"// for original
-                  //apiKey: "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"//For cloud API
+                  apiKey: my_api_key
                 });
                 var fileType = file.type// + ";base64"
                 var body = data;
@@ -133,14 +135,13 @@ function addPhoto()
                 var filename_updated = file.name.replace(/\s/g, '')
                 //var bucketName = "b2-hw2-cloud" 
                 var bucketName = "b2-hw2-my2727-ma4338" //for original
-                var params = {"key": filename_updated, "bucket": bucketName, "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*"};
+                var params = {"key": filename_updated, "bucket": bucketName, "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*", "x-api-key": my_api_key};
                 var addParams = {headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Access-Control-Allow-Methods' : 'OPTIONS,PUT',
                             'Access-Control-Allow-Headers' : '*',
                             "Content-Type": file.type,
-                            'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx' //   original API
-                            //'X-Api-Key' : 'WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS'           
+                            'x-api-key' : my_api_key
                         }};
                 apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
                     document.getElementById('custom_labels').value = "";
