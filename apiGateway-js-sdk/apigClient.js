@@ -53,7 +53,7 @@ apigClientFactory.newClient = function (config) {
 
     
     // extract endpoint and path from url
-    var invokeUrl = 'https://46o1y8zgw5.execute-api.us-east-1.amazonaws.com/beta';
+    var invokeUrl = 'https://iav31pdv15.execute-api.us-east-1.amazonaws.com/beta';
     var endpoint = /(^https?:\/\/[^\/]+)/g.exec(invokeUrl)[1];
     var pathComponent = invokeUrl.substring(endpoint.length);
 
@@ -104,12 +104,12 @@ apigClientFactory.newClient = function (config) {
     apigClient.addBucketKeyOptions = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['Content-Type', 'Accept', 'x-amz-meta-customLabels', 'key', 'bucket'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['Content-Type', 'Accept', 'x-amz-meta-customLabels'], ['body']);
         
         var addBucketKeyOptionsRequest = {
             verb: 'options'.toUpperCase(),
-            path: pathComponent + uritemplate('/add/{bucket}/{key}').expand(apiGateway.core.utils.parseParametersToObject(params, ['key', 'bucket'])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, ['Content-Type', 'Accept', 'x-amz-meta-customLabels', ]),
+            path: pathComponent + uritemplate('/add/{bucket}/{key}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Content-Type', 'Accept', 'x-amz-meta-customLabels']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };

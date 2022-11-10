@@ -124,22 +124,23 @@ function addPhoto()
         var encodedImage = getBase64(file).then(
             data => {
                 var apigClient = apigClientFactory.newClient({
-                  //apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx" for original
-                  apiKey: "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"//For cloud API
+                  apiKey: "v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx" for original
+                  //apiKey: "WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS"//For cloud API
                 });
                 var fileType = file.type// + ";base64"
                 var body = data;
                 var user_custom_labels = (document.getElementById('custom_labels').value).replace(/\s/g, '').toLowerCase();
                 var filename_updated = file.name.replace(/\s/g, '')
-                var bucketName = "b2-hw2-cloud" // "b2-hw2-my2727-ma4338" for original
+                //var bucketName = "b2-hw2-cloud" 
+                var bucketName = "b2-hw2-my2727-ma4338" //for original
                 var params = {"key": filename_updated, "bucket": bucketName, "Content-Type": file.type, "x-amz-meta-customLabels": user_custom_labels, "x-amz-acl": "public-read", "Accept":"*"};
                 var addParams = {headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Access-Control-Allow-Methods' : 'OPTIONS,PUT',
                             'Access-Control-Allow-Headers' : '*',
                             "Content-Type": file.type,
-                            //'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'    original API
-                            'X-Api-Key' : 'WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS'           
+                            'X-Api-Key' : 'v3dpBwhKLy8ULTm5Qix3uadAo6FoTvl65vzJ4ehx'    original API
+                            //'X-Api-Key' : 'WF2wXMF81C5TWjXvu2KuB3aPj3VcnBOK5EQtGPXS'           
                         }};
                 apigClient.addBucketKeyPut(params, file, addParams).then(function(res) {
                     document.getElementById('custom_labels').value = "";
